@@ -1,0 +1,24 @@
+{
+  "name": "family-search",
+  "version": "0.0.1",
+  "description": "This is the project which implements nlp based family search for people in the database.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vijaykrishnavanshi/family-search.git"
+  },
+  "keywords": [
+    "elasticsearch",
+    "graphdb",
+    "neo4j"
+  ],
+  "author": "Vijay Krishnavanshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vijaykrishnavanshi/family-search/issues"
+  },
+  "homepage": "https://github.com/vijaykrishnavanshi/family-search#readme"
+}
