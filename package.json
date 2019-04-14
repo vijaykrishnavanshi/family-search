@@ -4,6 +4,7 @@
   "description": "This is the project which implements nlp based family search for people in the database.",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,13 @@
   },
   "homepage": "https://github.com/vijaykrishnavanshi/family-search#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "elasticsearch": "^15.4.1",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
     "neo4j": "^2.0.0-RC2"
   }
 }
