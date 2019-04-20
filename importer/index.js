@@ -1,4 +1,5 @@
 const neo4j = require("../db/neo4j");
+const elasticsearch = require("../db/elasticsearch");
 const friends = require("./friends");
 
 const session = neo4j.session();
@@ -21,9 +22,42 @@ function createNode() {
   console.log(queries);
   const queryToExecute = `${queries.join("\n")} return 0`;
   const resultPromise = session.run(queryToExecute);
-  resultPromise.then(result => {
-    console.log(result);
-  });
+  resultPromise
+    .then(result => {
+      console.log(result);
+      elasticsearch.indices.create({
+        index: "nameindex",
+        body: {
+          mappings: {
+            properties: {
+              id: {
+                type: "keyword"
+              },
+              first_name: {
+                type: "text"
+              },
+              last_name: {
+                type: "text"
+              }
+            }
+          }
+        }
+      });
+      console.log(cast_nodes[0]);
+      elasticsearch.index({
+        index: "nameindex",
+        type: "document",
+        id: cast_nodes[0].id,
+        body: {
+          first_name: cast_nodes[0].first_name,
+          last_name: cast_nodes[0].last_name,
+          id: cast_nodes[0].id
+        }
+      });
+    })
+    .then(result => {
+      console.log(result);
+    });
 }
 
 createNode();
