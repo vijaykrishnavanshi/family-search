@@ -2,7 +2,7 @@
 
 /*
  * This file handles the configuration of the server
-*/
+ */
 
 const dotenv = require("dotenv");
 const app = require("./app"); // Recieved an express app instance

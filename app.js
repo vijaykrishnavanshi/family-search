@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const route = require('./route');
+const route = require("./route");
 
 // Express App
 const app = express();
