@@ -1,0 +1,66 @@
+{
+    "CAST_NODE": [
+        {
+            "id": 1, 
+            "first_name": "ross",
+            "last_name": "geller",
+            "gender": "male",
+            "age": 30
+        },
+        {
+            "id": 2, 
+            "first_name": "joe",
+            "last_name": "tribiani",
+            "gender": "male",
+            "age": 28
+        },
+        {
+            "id": 3, 
+            "first_name": "rachel",
+            "last_name": "green",
+            "gender": "female",
+            "age": 27
+        },
+        {
+            "id": 4, 
+            "first_name": "chandler",
+            "last_name": "bing",
+            "gender": "male",
+            "age": 29
+        },
+        {
+            "id": 5, 
+            "first_name": "monica",
+            "last_name": "geller",
+            "gender": "female",
+            "age": 27
+        },
+        {
+            "id": 6, 
+            "first_name": "pheeby",
+            "last_name": "buffay",
+            "gender": "female",
+            "age": 31
+        },
+        {
+            "id": 7, 
+            "first_name": "mark",
+            "last_name": "buffay",
+            "gender": "male",
+            "age": 24
+        }
+    ],
+    "SIBLING_RELATION": [
+        {
+            "group": [1, 5]
+        },
+        {
+            "group": [6, 7]
+        }
+    ],
+    "FRIEND_RELATION": [
+        {
+            "group": [1, 2, 3, 4, 5, 6]
+        }
+    ]
+}

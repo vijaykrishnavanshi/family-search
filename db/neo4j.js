@@ -10,3 +10,5 @@ process.on("SIGINT", function() {
   // This closes all used network connections.
   driver.close();
 });
+
+module.exports = driver;
