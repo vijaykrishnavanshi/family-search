@@ -25,24 +25,24 @@ function createNode() {
   resultPromise
     .then(result => {
       console.log(result);
-    //   elasticsearch.indices.create({
-    //     index: "nameindex",
-    //     body: {
-    //       mappings: {
-    //         properties: {
-    //           id: {
-    //             type: "keyword"
-    //           },
-    //           first_name: {
-    //             type: "text"
-    //           },
-    //           last_name: {
-    //             type: "text"
-    //           }
-    //         }
-    //       }
-    //     }
-    //   });
+      //   elasticsearch.indices.create({
+      //     index: "nameindex",
+      //     body: {
+      //       mappings: {
+      //         properties: {
+      //           id: {
+      //             type: "keyword"
+      //           },
+      //           first_name: {
+      //             type: "text"
+      //           },
+      //           last_name: {
+      //             type: "text"
+      //           }
+      //         }
+      //       }
+      //     }
+      //   });
       console.log(cast_nodes[0]);
       elasticsearch.index({
         index: "nameindex",
