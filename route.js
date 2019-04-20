@@ -29,12 +29,12 @@ router.route("/search-neo4j").get(
         },
     }, function (err, results) {
         if (err) throw err;
-        var result = results[0];
+        const result = results[0];
         if (!result) {
             console.log('No user found.');
             res.json({ hello: null });
         } else {
-            var user = result['u'];
+            const user = result['u'];
             console.log(JSON.stringify(user, null, 4));
             res.json({ hello: JSON.stringify(user, null, 4) });
 
