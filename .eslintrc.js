@@ -12,7 +12,8 @@ module.exports = {
     "rules": {
         "node/no-unsupported-features": "off",
         "node/no-extraneous-require": "off",
-        "node/exports-style": ["error", "module.exports"]
+        "node/exports-style": ["error", "module.exports"],
+	"no-console": "off"
     },
     "parserOptions": {
         "sourceType": "module"
