@@ -4,9 +4,10 @@
   "description": "This is the project which implements nlp based family search for people in the database.",
   "main": "server.js",
   "scripts": {
+    "deps": "docker-compose -f docker-compose/docker-compose.yml up",
+    "setup": "node importer/index.js",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "deps": "docker-compose -f docker-compose/docker-compose.yml up",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint . --fix"
@@ -34,7 +35,7 @@
     "elasticsearch": "^15.4.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
-    "neo4j": "^2.0.0-RC2"
+    "neo4j-driver": "^1.7.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.11",

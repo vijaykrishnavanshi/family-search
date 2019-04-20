@@ -22,15 +22,14 @@ router.route("/search-elasticsearch").get((req, res) => {
 
 router.route("/search-neo4j").get((req, res) => {
   console.log(req.query);
-  neo4j.cypher(
-    {
-      query: "MATCH (u:User {email: {email}}) RETURN u",
-      params: {
-        email: "alice@example.com"
-      }
-    },
-    function(err, results) {
-      if (err) throw err;
+  const session = neo4j.session();
+  const cypherQuery = "MATCH (u:User {email: {email}}) RETURN u";
+  const params = {
+    email: "alice@example.com"
+  };
+  session
+    .run(cypherQuery, params)
+    .then(results => {
       const result = results[0];
       if (!result) {
         console.log("No user found.");
@@ -40,8 +39,10 @@ router.route("/search-neo4j").get((req, res) => {
         console.log(JSON.stringify(user, null, 4));
         res.json({ hello: JSON.stringify(user, null, 4) });
       }
-    }
-  );
+    })
+    .catch(error => {
+      throw error;
+    });
 });
 
 router.route("/search").get((req, res) => {
