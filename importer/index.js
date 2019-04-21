@@ -3,7 +3,7 @@ const elasticsearch = require("../db/elasticsearch");
 const friends = require("./friends");
 
 const session = neo4j.session();
-function createNode() {
+async function createNode() {
   console.log(friends);
   const cast_nodes = friends["CAST_NODE"];
   const queries = cast_nodes.map(cast_node => {
@@ -21,43 +21,49 @@ function createNode() {
   });
   console.log(queries);
   const queryToExecute = `${queries.join("\n")} return 0`;
-  const resultPromise = session.run(queryToExecute);
-  resultPromise
-    .then(result => {
-      console.log(result);
-      //   elasticsearch.indices.create({
-      //     index: "nameindex",
-      //     body: {
-      //       mappings: {
-      //         properties: {
-      //           id: {
-      //             type: "keyword"
-      //           },
-      //           first_name: {
-      //             type: "text"
-      //           },
-      //           last_name: {
-      //             type: "text"
-      //           }
-      //         }
-      //       }
-      //     }
-      //   });
-      console.log(cast_nodes[0]);
-      elasticsearch.index({
-        index: "nameindex",
-        type: "document",
-        id: cast_nodes[0].id,
-        body: {
-          first_name: cast_nodes[0].first_name,
-          last_name: cast_nodes[0].last_name,
-          id: cast_nodes[0].id
-        }
-      });
-    })
-    .then(result => {
-      console.log(result);
+  const result = await session.run(queryToExecute);
+  console.log(result);
+
+  // create index
+  const indexExists = await elasticsearch.indices.exists({
+    index: "nameindex"
+  });
+  if (indexExists) {
+    await elasticsearch.indices.delete({
+      index: "nameindex"
     });
+  }
+  await elasticsearch.indices.create({
+    index: "nameindex",
+    body: {
+      mappings: {
+        properties: {
+          id: {
+            type: "keyword"
+          },
+          first_name: {
+            type: "text"
+          },
+          last_name: {
+            type: "text"
+          }
+        }
+      }
+    }
+  });
+  const indexingPromises = cast_nodes.map(cast_node => {
+    return elasticsearch.index({
+      index: "nameindex",
+      type: "document",
+      id: cast_node.id,
+      body: {
+        first_name: cast_node.first_name,
+        last_name: cast_node.last_name,
+        id: cast_node.id
+      }
+    });
+  });
+  await Promise.all(indexingPromises);
 }
 
-createNode();
+createNode().catch(console.log);

@@ -49,9 +49,12 @@ router.route("/search").get((req, res) => {
   console.log(req.query);
   elasticsearch
     .search({
-      q: "pants"
+      index: "nameindex",
+      type: "document",
+      q: "ross"
     })
     .then(response => {
+      console.log("response: ", response);
       console.log(response.hits.hits);
       return res.json({ hello: response.hits.hits });
     })
