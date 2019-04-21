@@ -50,8 +50,7 @@ router.route("/search").get((req, res) => {
   elasticsearch
     .search({
       index: "nameindex",
-      type: "document",
-      q: "ross"
+      q: "geller"
     })
     .then(response => {
       console.log("response: ", response);

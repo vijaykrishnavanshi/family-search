@@ -54,7 +54,7 @@ async function createNode() {
   const indexingPromises = cast_nodes.map(cast_node => {
     return elasticsearch.index({
       index: "nameindex",
-      type: "document",
+      type: "_doc",
       id: cast_node.id,
       body: {
         first_name: cast_node.first_name,
