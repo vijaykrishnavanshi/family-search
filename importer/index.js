@@ -25,6 +25,7 @@ async function createNode() {
   console.log(result);
 
   // create index
+  // eslint-disable-next-line
   const indexExists = await elasticsearch.indices.exists({
     index: "nameindex"
   });
