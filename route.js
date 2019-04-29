@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const elasticsearch = require("./db/elasticsearch");
 const neo4j = require("./db/neo4j");
+const RequestHandler = require("./modules/request-handler");
 
 router.route("/search-elasticsearch").get((req, res) => {
   console.log(req.query);
@@ -48,6 +49,8 @@ router.route("/search-neo4j").get((req, res) => {
 
 router.route("/search").get((req, res) => {
   console.log("req.query: ", req.query);
+  const requestHandler = new RequestHandler(req.query);
+  requestHandler.getParsedQuery().then(console.log);
   elasticsearch
     .search({
       index: "nameindex",

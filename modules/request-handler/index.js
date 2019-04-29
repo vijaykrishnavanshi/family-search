@@ -7,6 +7,9 @@ class RequestHandler {
   async getQueryParser() {
     return this.queryParser;
   }
+  async getParsedQuery() {
+    return this.queryParser.getParsedQuery();
+  }
 }
 
 module.exports = RequestHandler;
